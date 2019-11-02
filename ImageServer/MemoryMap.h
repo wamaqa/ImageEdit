@@ -1,4 +1,6 @@
 #pragma once
+#ifndef _MemoryMap_
+#define _MemoryMap_
 #include <iostream>
 #include <assert.h>
 
@@ -9,17 +11,10 @@ class MemoryMap
 {
 private:
     WCHAR m_name[256];
-    bool m_change;
     HANDLE m_hMap;
     long m_size;
-    wchar_t *m_preData;
-    wchar_t *m_data;
+	void* m_data;
 public:
-    bool change() const
-    {
-        return m_change;
-    }
-
 
     long Size() const
     {
@@ -28,7 +23,9 @@ public:
 
     int Init(int size);
     MemoryMap(const wchar_t * name);
-    void Write(const wchar_t* str);
-    wchar_t* read();
+    void Write(const void* str);
+	void Write(const void* str, int size);
+    void* read();
 };
+#endif
 

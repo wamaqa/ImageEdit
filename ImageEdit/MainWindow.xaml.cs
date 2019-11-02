@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO.MemoryMappedFiles;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -10,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -23,18 +25,17 @@ namespace ImageEdit
     /// </summary>
     public partial class MainWindow : Window
     {
-        [DllImport("User32.dll", EntryPoint = "PostThreadMessage")]
-        private static extern int PostThreadMessage( int idThread, int Msg, IntPtr wParam, IntPtr lParam);
-        private Process m_process;
+        private ImageOpPipe m_connectPipe;
         public MainWindow()
         {
             InitializeComponent();
+            m_connectPipe = new ImageOpPipe();
         }
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            //m_process = Process.Start(".\\ImageServer.exe");
-            m_process = Process.GetProcessesByName("ImageServer").FirstOrDefault();
+            m_connectPipe.Start(this);
+           
         }
 
         private void MenuOpenFile_OnClick(object sender, RoutedEventArgs e)
@@ -44,14 +45,24 @@ namespace ImageEdit
             openFileDialog.Filter = "png文件|*.png";
             if (openFileDialog.ShowDialog() == true)
             {
+                m_connectPipe.OpenFile(openFileDialog.FileName, ConnectReceive);
                 string fileName = openFileDialog.FileName;
-                PostThreadMessage(m_process.Threads[0].Id, 0x0400 + 50, new IntPtr(12), new IntPtr(23));
+                IntPtr intPtr = new IntPtr();
+               
             }
         }
 
         private void MainWindow_OnClosed(object sender, EventArgs e)
         {
-            m_process.Close();
+            m_connectPipe.Close();
+        }
+
+        private void ConnectReceive(BitmapImage image)
+        {
+            Image.Source = null;
+            Image.Source = image;
         }
     }
+
+ 
 }

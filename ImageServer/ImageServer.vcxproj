@@ -144,12 +144,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseOperate.cpp" />
+    <ClCompile Include="ConnectPipe.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainOperate.cpp" />
     <ClCompile Include="MemoryMap.cpp" />
+    <ClCompile Include="StringUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseOperate.h" />
+    <ClInclude Include="Command.h" />
+    <ClInclude Include="ConnectPipe.h" />
+    <ClInclude Include="MainOperate.h" />
     <ClInclude Include="MemoryMap.h" />
+    <ClInclude Include="StringUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

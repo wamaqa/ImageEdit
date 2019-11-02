@@ -11,13 +11,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
-        <Border BorderBrush="Gainsboro" BorderThickness="0 0 1 0">
-            <Image Name="Image" Grid.Column="0" OpacityMask="#FF402727">
-                <Image.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem   Header="打开文件" Click="MenuOpenFile_OnClick"/>
-                    </ContextMenu>
-                </Image.ContextMenu>
+        <Border BorderBrush="Gainsboro" Grid.Column="0" BorderThickness="0 0 1 0">
+            <Image Name="Image">
             </Image>
         </Border>
         <Grid Grid.Column="1">
