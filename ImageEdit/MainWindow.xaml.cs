@@ -74,7 +74,8 @@ namespace ImageEdit
 
         private void SliderExposure_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            m_connectPipe.SetExposure(SliderExposure.Value, SliderContrast.Value, SliderBrightness.Value, ConnectReceive);
+            m_connectPipe?.SetExposure(SliderExposure.Value, SliderContrast.Value, SliderBrightness.Value,
+                ConnectReceive);
         }
     }
 

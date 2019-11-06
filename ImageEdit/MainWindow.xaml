@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ImageEdit" Background="#FF222222"
-        mc:Ignorable="d" Loaded="MainWindow_OnLoaded" Closed="MainWindow_OnClosed"
+        xmlns:local="clr-namespace:ImageEdit" Background="{StaticResource Background}"
+        mc:Ignorable="d" Loaded="MainWindow_OnLoaded" Closed="MainWindow_OnClosed" Foreground="{StaticResource Foreground}"
         Title="MainWindow" Height="600" Width="1020">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -13,9 +13,9 @@
         </Grid.ColumnDefinitions>
         <Image Name="Image" Grid.Column="0">
         </Image>
-        <Grid Grid.Column="1" Background="#FF262626">
+        <Grid Grid.Column="1" Background="{StaticResource BackgroundControl}">
             <StackPanel Orientation="Vertical" Margin="1 0 0 0">
-                <StackPanel Orientation="Horizontal" Height="40" Background="#FF323232">
+                <StackPanel Style="{StaticResource StackPanelItemStyle}">
                     <Button Name="Openfile" Height="25" Click="MenuOpenFile_OnClick" Background="#00DDDDDD" Margin="5">
                         <Image Source="Image/打开.png"></Image>
                     </Button>
@@ -26,21 +26,21 @@
                         <Image Source="Image/另存为.png"></Image>
                     </Button>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Background="#FF262626">
-                    <StackPanel Orientation="Horizontal" Background="#FF323232" Margin="1 1 0 0" Height="40">
-                        <Label Content="曝光度" Foreground="#FFe6e6e6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider Name="SliderExposure" Margin="2,11" Foreground="#FFe6e6e6" Background="#FF323232" Value="0" HorizontalAlignment="Left" VerticalAlignment="Center" Maximum="2.5" Width="124" SmallChange="1" TickPlacement="BottomRight" Minimum="-2.5" ValueChanged="SliderExposure_ValueChanged" />
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Style="{StaticResource StackPanelItemStyle}">
+                        <Label Content="曝光度"/>
+                        <Slider Name="SliderExposure" Value="0"  Maximum="2.5"  SmallChange="0.5" Minimum="-2.5" ValueChanged="SliderExposure_ValueChanged" />
                         <Label Content="{Binding Value, ElementName=SliderExposure}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FFe6e6e6" ></Label>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Background="#FF323232" Margin="1 1 0 0" Height="40">
-                        <Label Content="亮度   " Foreground="#FFe6e6e6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="SliderBrightness" Margin="2,11" Foreground="#FFe6e6e6" Background="#FF323232" Value="0" HorizontalAlignment="Left" VerticalAlignment="Center" Maximum="255" Width="124" SmallChange="1" TickPlacement="BottomRight" Minimum="-2.5" ValueChanged="SliderExposure_ValueChanged" />
-                        <Label Content="{Binding Value, ElementName=SliderExposure}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FFe6e6e6" />
+                    <StackPanel Style="{StaticResource StackPanelItemStyle}">
+                        <Label Content="亮度   "/>
+                        <Slider x:Name="SliderBrightness" Value="0" Maximum="255" SmallChange="1" Minimum="-255" ValueChanged="SliderExposure_ValueChanged" />
+                        <Label Content="{Binding Value, ElementName=SliderBrightness}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FFe6e6e6" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Background="#FF323232" Margin="1 1 0 0" Height="40">
-                        <Label Content="对比度" Foreground="#FFe6e6e6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="SliderContrast" Margin="2,11" Foreground="#FFe6e6e6" Background="#FF323232" Value="1" HorizontalAlignment="Left" VerticalAlignment="Center" Maximum="1" Width="124" SmallChange="0.01" TickPlacement="BottomRight" Minimum="0" ValueChanged="SliderExposure_ValueChanged" />
-                        <Label Content="{Binding Value, ElementName=SliderExposure}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FFe6e6e6" />
+                    <StackPanel Style="{StaticResource StackPanelItemStyle}">
+                        <Label Content="对比度"/>
+                        <Slider x:Name="SliderContrast" Margin="2,11" Value="1" Maximum="1" SmallChange="0.1" Minimum="0" ValueChanged="SliderExposure_ValueChanged" TickFrequency="0.1" />
+                        <Label Content="{Binding Value, ElementName=SliderContrast}"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

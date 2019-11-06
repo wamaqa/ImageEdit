@@ -32,9 +32,9 @@ ImageData* MainOperate::Exc(Json::Value& json)
 		cv::Mat g_dstImage = cv::Mat::zeros(m_mat.size(), m_mat.type());
 		for (int y = 0; y < m_mat.rows; y++) {
 			for (int x = 0; x < m_mat.cols; x++) {
-				for (int c = 0; c < m_mat.channels(); c++) {
-					g_dstImage.at<cv::Vec3b>(y, x)[c] =
-						cv::saturate_cast<uchar>((b * m_mat.at<cv::Vec3b>(y, x)[c]) + c);
+				for (int z = 0; z < m_mat.channels(); z++) {
+					g_dstImage.at<cv::Vec3b>(y, x)[z] =
+						cv::saturate_cast<uchar>((b * m_mat.at<cv::Vec3b>(y, x)[z]) + c);
 				}
 			}
 		}
