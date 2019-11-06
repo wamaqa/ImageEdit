@@ -8,7 +8,7 @@ ConnectPipe::ConnectPipe()
 	memoryMapRead = new MemoryMap(L"ImageEdit");
 	memoryMapWrite = new MemoryMap(L"ImageServer");
 	memoryMapRead->Init(1024);
-	memoryMapWrite->Init(1024*1024*10);
+	memoryMapWrite->Init(8*1024*1024 * 100);
 }
 
 Json::Value ConnectPipe::read()

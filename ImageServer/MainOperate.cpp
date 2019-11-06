@@ -33,8 +33,8 @@ ImageData* MainOperate::Exc(Json::Value& json)
 		for (int y = 0; y < m_mat.rows; y++) {
 			for (int x = 0; x < m_mat.cols; x++) {
 				for (int z = 0; z < m_mat.channels(); z++) {
-					g_dstImage.at<cv::Vec3b>(y, x)[z] =
-						cv::saturate_cast<uchar>((b * m_mat.at<cv::Vec3b>(y, x)[z]) + c);
+					auto val1 = cv::saturate_cast<uchar>((b * m_mat.at<cv::Vec3b>(y, x)[z]) + c);
+					g_dstImage.at<cv::Vec3b>(y, x)[z] = cv::saturate_cast<uchar>(val1 * pow(2.0, a));
 				}
 			}
 		}

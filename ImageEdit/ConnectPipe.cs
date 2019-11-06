@@ -33,7 +33,7 @@ namespace ImageEdit
             //m_process = Process.Start(string.Format("{0}\\ImageServer.exe", p));
             m_process = Process.GetProcessesByName("ImageServer").FirstOrDefault();
             m_mappedWrite = MemoryMappedFile.CreateOrOpen("ImageEdit", 1024);
-            m_mappedRead = MemoryMappedFile.CreateOrOpen("ImageServer", 102400);
+            m_mappedRead = MemoryMappedFile.CreateOrOpen("ImageServer", 8 * 1024 * 1024 * 100);
             Hwnd = Process.GetCurrentProcess().MainWindowHandle.ToInt64();
             hwndSource = HwndSource.FromHwnd(Process.GetCurrentProcess().MainWindowHandle);
             hwndSource.AddHook(Hook);
