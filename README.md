@@ -2,4 +2,4 @@
 ## 功能
 目前只实现了曝光度调整, 亮度 对比度调整
 ## 界面效果
-![image.png](https://github.com/wamaqa/ImageEdit/edit/master/res/img.png)  
+![image.png](doc/img.png)  
