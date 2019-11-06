@@ -23,5 +23,17 @@ namespace ImageEdit
         {
             ConnectReceive(bitmap);
         }
+
+        public void SetExposure(double value, Action<BitmapImage> connectReceive)
+        {
+            Exc(Cmd.SetExposure, value);
+            ConnectReceive = connectReceive;
+        }
+
+        public void SetExposure(double exposureValue, double contrastValue, double brightnessValue, Action<BitmapImage> connectReceive)
+        {
+            Exc(Cmd.SetExposure, exposureValue, contrastValue, brightnessValue);
+            ConnectReceive = connectReceive;
+        }
     }
 }

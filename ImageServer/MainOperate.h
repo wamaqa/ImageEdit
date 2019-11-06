@@ -5,12 +5,13 @@
 #include <json/value.h>
 #include "BaseOperate.h"
 #include "Command.h"
+#include <opencv2/core/mat.hpp>
 
 class MainOperate : public BaseOperate
 {
 public:
-
-	ImageData* Exc(Json::Value &json) const;
+	cv::Mat m_mat;
+	ImageData* Exc(Json::Value &json);
 };
 
 #endif

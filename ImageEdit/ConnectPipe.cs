@@ -27,8 +27,10 @@ namespace ImageEdit
         private Process m_process;
         private HwndSource hwndSource;
         public void Start(System.Windows.Media.Visual visual)
-        { 
-            //m_process = Process.Start(".\\ImageServer.exe");
+        {
+            //string path = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+            //string p = Path.GetDirectoryName(path);
+            //m_process = Process.Start(string.Format("{0}\\ImageServer.exe", p));
             m_process = Process.GetProcessesByName("ImageServer").FirstOrDefault();
             m_mappedWrite = MemoryMappedFile.CreateOrOpen("ImageEdit", 1024);
             m_mappedRead = MemoryMappedFile.CreateOrOpen("ImageServer", 102400);
@@ -48,6 +50,11 @@ namespace ImageEdit
             byte[] data = new byte[wparam.ToInt64()];
             //读取字符
             long offset = viewAccessor.PointerOffset;
+
+            FileStream file = new FileStream("D:\\a.png", FileMode.OpenOrCreate);
+            file.Write(data, 0, size);
+            file.Close();
+
             viewAccessor.ReadArray<byte>(0, data, 0, size);
             MemoryStream memory = new MemoryStream();
             memory.Write(data, 0, size);
@@ -63,7 +70,7 @@ namespace ImageEdit
 
         public void Close()
         {
-            m_process.Close();
+            m_process?.Close();
         }
 
         public void Post(PostData data)
@@ -77,7 +84,7 @@ namespace ImageEdit
 
         }
 
-        public void Exc(int cmd, params string[] param)
+        public void Exc(int cmd, params object[] param)
         {
             PostData postData = new PostData();
             postData.Command = cmd;
@@ -125,6 +132,6 @@ namespace ImageEdit
         /// <summary>
         /// 提交数据
         /// </summary>
-        public string[] Data { set; get; }
+        public object[] Data { set; get; }
     }
 }

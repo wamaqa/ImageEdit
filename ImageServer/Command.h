@@ -11,7 +11,7 @@
 
 
 #define CMD_OpenFIle 0x0001
-
+#define CMD_SetExposure  0x0002
 
 struct ImageData
 {

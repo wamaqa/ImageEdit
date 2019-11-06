@@ -42,13 +42,12 @@ namespace ImageEdit
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "打开文件";
-            openFileDialog.Filter = "png文件|*.png";
+            openFileDialog.Filter = "图像文件(*.bmp, *.jpg, *.png) | *.bmp; *.jpg; *.png| 所有文件(*.*) | *.*";
             if (openFileDialog.ShowDialog() == true)
             {
                 m_connectPipe.OpenFile(openFileDialog.FileName, ConnectReceive);
                 string fileName = openFileDialog.FileName;
                 IntPtr intPtr = new IntPtr();
-               
             }
         }
 
@@ -61,6 +60,21 @@ namespace ImageEdit
         {
             Image.Source = null;
             Image.Source = image;
+        }
+
+        private void MenuSaveAsFile_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Savefile_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SliderExposure_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            m_connectPipe.SetExposure(SliderExposure.Value, SliderContrast.Value, SliderBrightness.Value, ConnectReceive);
         }
     }
 

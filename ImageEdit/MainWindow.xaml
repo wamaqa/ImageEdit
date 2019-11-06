@@ -3,26 +3,47 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ImageEdit"
+        xmlns:local="clr-namespace:ImageEdit" Background="#FF222222"
         mc:Ignorable="d" Loaded="MainWindow_OnLoaded" Closed="MainWindow_OnClosed"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1020">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
-        <Border BorderBrush="Gainsboro" Grid.Column="0" BorderThickness="0 0 1 0">
-            <Image Name="Image">
-            </Image>
-        </Border>
-        <Grid Grid.Column="1">
-            <Button>
-                <Button.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem  Name="MenuOpenFile" Header="打开文件" Click="MenuOpenFile_OnClick"/>
-                    </ContextMenu>
-                </Button.ContextMenu>
-            </Button>
+        <Image Name="Image" Grid.Column="0">
+        </Image>
+        <Grid Grid.Column="1" Background="#FF262626">
+            <StackPanel Orientation="Vertical" Margin="1 0 0 0">
+                <StackPanel Orientation="Horizontal" Height="40" Background="#FF323232">
+                    <Button Name="Openfile" Height="25" Click="MenuOpenFile_OnClick" Background="#00DDDDDD" Margin="5">
+                        <Image Source="Image/打开.png"></Image>
+                    </Button>
+                    <Button Name="Savefile" Height="25" Click="Savefile_OnClick" Background="#00DDDDDD" Margin="5">
+                        <Image Source="Image/保存.png"></Image>
+                    </Button>
+                    <Button Name="SaveAsfile" Height="25" Click="MenuSaveAsFile_OnClick" Background="#00DDDDDD" Margin="5">
+                        <Image Source="Image/另存为.png"></Image>
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Background="#FF262626">
+                    <StackPanel Orientation="Horizontal" Background="#FF323232" Margin="1 1 0 0" Height="40">
+                        <Label Content="曝光度" Foreground="#FFe6e6e6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Slider Name="SliderExposure" Margin="2,11" Foreground="#FFe6e6e6" Background="#FF323232" Value="0" HorizontalAlignment="Left" VerticalAlignment="Center" Maximum="2.5" Width="124" SmallChange="1" TickPlacement="BottomRight" Minimum="-2.5" ValueChanged="SliderExposure_ValueChanged" />
+                        <Label Content="{Binding Value, ElementName=SliderExposure}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FFe6e6e6" ></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Background="#FF323232" Margin="1 1 0 0" Height="40">
+                        <Label Content="亮度   " Foreground="#FFe6e6e6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Slider x:Name="SliderBrightness" Margin="2,11" Foreground="#FFe6e6e6" Background="#FF323232" Value="0" HorizontalAlignment="Left" VerticalAlignment="Center" Maximum="255" Width="124" SmallChange="1" TickPlacement="BottomRight" Minimum="-2.5" ValueChanged="SliderExposure_ValueChanged" />
+                        <Label Content="{Binding Value, ElementName=SliderExposure}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FFe6e6e6" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Background="#FF323232" Margin="1 1 0 0" Height="40">
+                        <Label Content="对比度" Foreground="#FFe6e6e6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Slider x:Name="SliderContrast" Margin="2,11" Foreground="#FFe6e6e6" Background="#FF323232" Value="1" HorizontalAlignment="Left" VerticalAlignment="Center" Maximum="1" Width="124" SmallChange="0.01" TickPlacement="BottomRight" Minimum="0" ValueChanged="SliderExposure_ValueChanged" />
+                        <Label Content="{Binding Value, ElementName=SliderExposure}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FFe6e6e6" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>
