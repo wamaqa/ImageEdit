@@ -44,20 +44,12 @@ namespace ImageEdit
         private IntPtr Hook(IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam, ref bool handled)
         {
             if (msg != Command) return hwnd;
-            MemoryMappedViewAccessor viewAccessor = m_mappedRead.CreateViewAccessor();
+            var stream = m_mappedRead.CreateViewStream();
             //读取字符长度
             int size = wparam.ToInt32();
             byte[] data = new byte[wparam.ToInt64()];
-            //读取字符
-            long offset = viewAccessor.PointerOffset;
-
-            FileStream file = new FileStream("D:\\a.png", FileMode.OpenOrCreate);
-            file.Write(data, 0, size);
-            file.Close();
-
-            viewAccessor.ReadArray<byte>(0, data, 0, size);
-            MemoryStream memory = new MemoryStream();
-            memory.Write(data, 0, size);
+            stream.Read(data, 0, size);
+            MemoryStream memory = new MemoryStream(data);
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
             bitmap.StreamSource = memory;
