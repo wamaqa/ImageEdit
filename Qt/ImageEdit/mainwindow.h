@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <opencv2/core/mat.hpp>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,13 +17,18 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
 
-    void on_graphicsView_destroyed();
+    void on_BtnOpenFile_clicked();
 
-    void on_MainWindow_tabifiedDockWidgetActivated(QDockWidget *dockWidget);
+    void on_SliderExposure_sliderReleased();
+
+    void on_SliderLighting_sliderReleased();
+
+    void on_SliderContras_sliderReleased();
 
 private:
     Ui::MainWindow *ui;
+    cv::Mat srcImage;
+    void on_SliderValueChanged();
 };
 #endif // MAINWINDOW_H

@@ -87,7 +87,7 @@ color: rgb(230, 230, 230);</string>
           <enum>QLayout::SetFixedSize</enum>
          </property>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="BtnOpenFile">
            <property name="autoFillBackground">
             <bool>false</bool>
            </property>
@@ -100,7 +100,7 @@ color: rgb(230, 230, 230);</string>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="BtnSaveFile">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(34, 34, 34);</string>
            </property>
@@ -110,7 +110,7 @@ color: rgb(230, 230, 230);</string>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="BtnAutoAdjust">
            <property name="styleSheet">
             <string notr="true">background-color: rgb(34, 34, 34);</string>
            </property>
@@ -127,7 +127,7 @@ color: rgb(230, 230, 230);</string>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(50, 50, 50);</string>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,5">
+        <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0">
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
@@ -136,7 +136,19 @@ color: rgb(230, 230, 230);</string>
           </widget>
          </item>
          <item>
-          <widget class="QSlider" name="slider">
+          <widget class="QSlider" name="SliderExposure">
+           <property name="cursor">
+            <cursorShape>IBeamCursor</cursorShape>
+           </property>
+           <property name="minimum">
+            <number>-25</number>
+           </property>
+           <property name="maximum">
+            <number>25</number>
+           </property>
+           <property name="singleStep">
+            <number>1</number>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -159,7 +171,10 @@ color: rgb(230, 230, 230);</string>
           </widget>
          </item>
          <item>
-          <widget class="QSlider" name="slider_2">
+          <widget class="QSlider" name="SliderLighting">
+           <property name="maximum">
+            <number>255</number>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -182,7 +197,13 @@ color: rgb(230, 230, 230);</string>
           </widget>
          </item>
          <item>
-          <widget class="QSlider" name="slider_3">
+          <widget class="QSlider" name="SliderContras">
+           <property name="maximum">
+            <number>8</number>
+           </property>
+           <property name="value">
+            <number>4</number>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
